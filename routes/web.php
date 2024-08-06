@@ -85,7 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/rekam/pasien/{id}', [RekamLukaBakarController::class, 'detail'])->name('rekam.detail');
 
     Route::get('/rekam/{id}/delete', [RekamController::class, 'delete'])->name('rekam.delete');
-    Route::post('/rekam/pasien/{id}/update', [RekamController::class, 'update'])->name('rekam.update');
+    Route::post('/rekam/pasien/{id}/update', [RekamLukaBakarController::class, 'update'])->name('rekam.update');
 
     Route::post('/rekam/pemeriksaan/update', [RekamPemeriksaanController::class, 'pemeriksaan'])->name('pemeriksaan.update');
     Route::post('/rekam/tindakan/update', [RekamPemeriksaanController::class, 'tindakan'])->name('tindakan.update');
@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/rekam/diagnosa/delete/{id}', [RekamPemeriksaanController::class, 'diagnosa_delete'])->name('rekam.diagnosa.delete');
 
-    Route::get('/rekam/status/{id}/{status}/update', [RekamController::class, 'rekam_status'])->name('rekam.status');
+    Route::get('/rekam/status/{id}/{status}/update', [RekamLukaBakarController::class, 'rekam_status'])->name('rekam.status');
 
 
     Route::get('/rekam/pasien/resep', [RekamController::class, 'detail'])->name('rekam.upload');

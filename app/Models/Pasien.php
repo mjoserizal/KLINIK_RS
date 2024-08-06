@@ -2,17 +2,39 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pasien extends Model
 {
-    use SoftDeletes;
-    protected $table = "pasien";
+    use HasFactory, SoftDeletes;
+
+    protected $table = 'pasien';
+
     protected $fillable = [
-        "no_rm", "nama", "tmp_lahir", "tgl_lahir", "jk", "alamat_lengkap", "kelurahan", "kecamatan", "kabupaten", "kodepos", "agama", "status_menikah", "pendidikan", "pekerjaan", "kewarganegaraan", "no_hp", "deleted_at", "general_uncent"
+        'no_rm', 'nama', 'tmp_lahir', 'tgl_lahir', 'jk', 'alamat_lengkap',
+        'kelurahan', 'kecamatan', 'kabupaten', 'kodepos', 'agama',
+        'status_menikah', 'pendidikan', 'pekerjaan', 'kewarganegaraan',
+        'no_hp', 'umur', 'kategori_umur'
     ];
+
+    protected $dates = ['tgl_lahir', 'deleted_at'];
+
+    // Mutator to set umur and kategori_umur based on tgl_lahir
+    public function setTglLahirAttribute($value)
+    {
+        $this->attributes['tgl_lahir'] = $value;
+
+        if ($value) {
+            $birthdate = Carbon::parse($value);
+            $age = $birthdate->age;
+            $this->attributes['umur'] = $age;
+            $this->attributes['kategori_umur'] = $age >= 18 ? 'Dewasa' : 'Anak-Anak';
+        }
+    }
+
 
     function getGeneralUncent()
     {

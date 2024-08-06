@@ -17,7 +17,6 @@ class RekamLukaBakar extends Model
         'no_rekam',
         'tgl_rekam',
         'pasien_id',
-        'dokter_id',
         'berat_badan',
         'persen_luka_bakar',
         'cairan',
@@ -44,18 +43,18 @@ class RekamLukaBakar extends Model
             case 2:
                 return '<span class="badge badge-info light">
                             <i class="fa fa-circle text-info mr-1"></i>
-                            Pemeriksaan
+                            Diperiksa
                         </span>';
                 break;
             case 3:
                 return '<span class="badge badge-warning light" style="width:100px">
-                           Di Apotek
+                          Sudah Diperiksa
                         </span>';
                 break;
             case 4:
                 return '<span class="badge badge-danger light">
                             <i class="fa fa-circle text-danger mr-1"></i>
-                            Pembayaran
+                            Lanjut
                         </span>';
                 break;
             case 5:

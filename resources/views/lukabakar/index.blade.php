@@ -59,8 +59,10 @@
                                     <tr>
                                         <td align="center">{{ $rekams->firstItem() + $key }}</td>
                                         <td>{{ $row->no_rekam }}<br />{{ $row->tgl_rekam }}</td>
-                                        <td><a
-                                                href="{{ Route("rekam.detail", $row->pasien_id) }}">{{ $row->pasien->nama }}</a>
+                                        <td>
+                                            <a href="{{ Route("rekam.detail", $row->pasien_id) }}">
+                                                {{ $row->pasien_nama ?: "Pasien tidak ditemukan" }}
+                                            </a>
                                         </td>
                                         <td>{{ $row->berat_badan }} kg</td>
                                         <td>{{ $row->persen_luka_bakar }}%</td>
@@ -69,18 +71,20 @@
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{ Route("rekam.detail", $row->pasien_id) }}"
-                                                    class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                                        class="fa fa-user-md"></i></a>
+                                                    class="btn btn-primary shadow btn-xs sharp mr-1">
+                                                    <i class="fa fa-user-md"></i>
+                                                </a>
                                                 @if (auth()->user()->role_display() == "Admin" && $row->status == 2)
                                                     <a href="{{ Route("rekam.edit", $row->id) }}"
                                                         class="btn btn-info shadow btn-xs sharp mr-1">
-                                                        <i class="fa fa-pencil"></i></a>
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
                                                     <a href="#" class="btn btn-danger shadow btn-xs sharp delete"
                                                         r-link="{{ Route("rekam.delete", $row->id) }}"
-                                                        r-name="{{ $row->pasien->nama }}" r-id="{{ $row->id }}"><i
-                                                            class="fa fa-trash"></i></a>
+                                                        r-name="{{ $row->pasien_nama }}" r-id="{{ $row->id }}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </a>
                                                 @endif
-
                                             </div>
                                         </td>
                                     </tr>

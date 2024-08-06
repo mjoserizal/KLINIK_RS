@@ -32,7 +32,7 @@ class DashboardQuery
     {
         $user = auth()->user();
         $role = $user->role_display();
-        return Rekam::whereDate('tgl_rekam', date('Y-m-d'))
+        return RekamLukaBakar::whereDate('tgl_rekam', date('Y-m-d'))
             ->when($role, function ($query) use ($role, $user) {
                 if ($role == "Dokter") {
                     $dokterId = Dokter::where('user_id', $user->id)->where('status', 1)->first()->id;
@@ -45,7 +45,7 @@ class DashboardQuery
     {
         $user = auth()->user();
         $role = $user->role_display();
-        return Rekam::whereDate('tgl_rekam', date('Y-m-d'))
+        return RekamLukaBakar::whereDate('tgl_rekam', date('Y-m-d'))
             ->when($role, function ($query) use ($role, $user) {
                 if ($role == "Dokter") {
                     $dokterId = Dokter::where('user_id', $user->id)->where('status', 1)->first()->id;
@@ -59,7 +59,7 @@ class DashboardQuery
     {
         $user = auth()->user();
         $role = $user->role_display();
-        return Rekam::whereMonth('tgl_rekam', date('m'))
+        return RekamLukaBakar::whereMonth('tgl_rekam', date('m'))
             ->whereYear('tgl_rekam', date('Y'))
             ->when($role, function ($query) use ($role, $user) {
                 if ($role == "Dokter") {
@@ -73,7 +73,7 @@ class DashboardQuery
     {
         $user = auth()->user();
         $role = $user->role_display();
-        return Rekam::whereYear('tgl_rekam', date('Y'))
+        return RekamLukaBakar::whereYear('tgl_rekam', date('Y'))
             ->when($role, function ($query) use ($role, $user) {
                 if ($role == "Dokter") {
                     $dokterId = Dokter::where('user_id', $user->id)->where('status', 1)->first()->id;
@@ -86,7 +86,7 @@ class DashboardQuery
     {
         $user = auth()->user();
         $role = $user->role_display();
-        return Rekam::when($role, function ($query) use ($role, $user) {
+        return RekamLukaBakar::when($role, function ($query) use ($role, $user) {
             if ($role == "Dokter") {
                 $dokterId = Dokter::where('user_id', $user->id)->where('status', 1)->first()->id;
                 $query->where('dokter_id', '=', $dokterId);

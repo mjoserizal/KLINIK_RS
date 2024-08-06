@@ -18,19 +18,21 @@ class CreatePasienTable extends Migration
             $table->string('no_rm');
             $table->string('nama');
             $table->string('tmp_lahir')->nullable();
-            $table->date('tgl_lahir')->nullable();;
+            $table->date('tgl_lahir')->nullable();
             $table->enum('jk', ["Laki-Laki", "Perempuan"])->nullable();
             $table->longText('alamat_lengkap')->nullable();
             $table->string('kelurahan')->nullable();
             $table->string('kecamatan')->nullable();
             $table->string('kabupaten')->nullable();
             $table->string('kodepos')->nullable();
-            $table->string('agama')->default("Islam")->nullable();;
-            $table->enum('status_menikah', ["Menikah", "Belum Menikah", "Janda", "Duda"])->nullable();;
+            $table->string('agama')->default("Islam")->nullable();
+            $table->enum('status_menikah', ["Menikah", "Belum Menikah", "Janda", "Duda"])->nullable();
             $table->string('pendidikan')->nullable();
             $table->string('pekerjaan')->nullable();
-            $table->enum('kewarganegaraan', ["WNI", "WNA"])->defaul("WNI");
+            $table->enum('kewarganegaraan', ["WNI", "WNA"])->default("WNI");
             $table->string('no_hp', 13)->nullable();
+            $table->integer('umur')->nullable();  // Tambahkan kolom umur
+            $table->enum('kategori_umur', ["Dewasa", "Anak-Anak"])->nullable();  // Tambahkan kolom kategori umur
             $table->timestamps();
             $table->softDeletes();
         });
